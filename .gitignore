@@ -22,7 +22,7 @@ go.work
 go.work.sum
 
 # Custom exclusions
-/scratch
+/zzz_scratch
 /localdev
 /secret*
 /secrets*
