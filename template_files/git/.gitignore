@@ -1,4 +1,4 @@
-# World-Wide Group GOLANG .gitignore
+# cdcloud.io GOLANG .gitignore
 #
 # Binaries for programs and plugins
 *.exe
@@ -10,25 +10,29 @@
 
 # Test binary, built with `go test -c`
 *.test
+*.log
 
 # Output of the go coverage tool
 *.out
 
 # Dependency directories
-/vendor/
+vendor/
 
-# Go workspace file
+# Go workspace files
 go.work
 go.work.sum
 
 # Custom exclusions
-/localdev
-/secret*
-/secrets*
-*secret*
+scratch/
+localdev/
+
+# Secret files and directories
+secret/
+secret*/
+*secret
 .env
 
-### additional files from OS's and IDE's ###
+### Additional files from OS's and IDE's ###
 # OS's
 *~
 .DS_Store
@@ -62,12 +66,6 @@ ehthumbs_vista.db
 *.stackdump
 [Dd]esktop.ini
 $RECYCLE.BIN/
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
-*.lnk
 
 # IDE's
 .vscode/*
