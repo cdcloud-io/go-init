@@ -1,5 +1,7 @@
 package main
 
+// cdcloud-io proprietary main() entrypoint v2.0
+
 import (
 	"context"
 	"fmt"
@@ -11,34 +13,51 @@ import (
 )
 
 /*
-main, in GO currently does not return.  Therefore we dont have an application exit code.
-The run function is like the main function, except that it takes in
-operating system fundamentals as arguments, and returns an error.  like in c int main()
----------------------------------------------------------------------------------------------------------
+main, in Go typically does not return an error code. Therefore, we do NOT
+have an application exit code directly in main.
+
+The run() function is like the main function but takes in
+operating system input(s) as arguments and returns an error,
+similar to `int main()` in C.
+
+--------------------------------------------------------------------------------
     VALUE     |    TYPE                |    DESCRIPTION
----------------------------------------------------------------------------------------------------------
-   os.Args	  | []string	             |  The arguments passed executing your program /or parsing flags.
+--------------------------------------------------------------------------------
+   os.Args	  | []string	             |  Arguments / flags passed on execution
    os.Stdin	  | io.Reader	             |  For reading input
    os.Stdout	| io.Writer	             |  For writing output
    os.Stderr	| io.Writer	             |  For writing error logs
-   os.Getenv	| func(string)           |  string	For reading environment variables
-   os.Getwd	  | func() (string, error) | 	Get the working directory
----------------------------------------------------------------------------------------------------------
+   os.Getenv	| func(string)           |  For reading environment variables
+   os.Getwd	  | func() (string, error) |  Gets the working directory
+--------------------------------------------------------------------------------
+note(s)
+- signal.NotifyContext: listens for OS signals (e.g., SIGINT or SIGTERM) and
+  cancels the context upon receiving them with graceful shutdown
+
+--------------------------------------------------------------------------------
 */
 
 func run(ctx context.Context, w io.Writer, args []string) error {
+	// Set up context with SIGINT (signal interrupt) handling on Ctrl+C
 	ctx, cancel := signal.NotifyContext(ctx, os.Interrupt)
 	defer cancel()
 
-	app.Init()
+	// Run the app with the provided context
+	if err := agent.RunAgent(ctx, w, args); err != nil {
+		return err
+	}
 
 	return nil
 }
 
 func main() {
+	// Root context for the application
 	ctx := context.Background()
+
+	// Run the main function logic in run(), handle errors, and exit properly
 	if err := run(ctx, os.Stdout, os.Args); err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
 		os.Exit(1)
 	}
 }
+

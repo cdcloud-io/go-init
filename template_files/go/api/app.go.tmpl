@@ -16,7 +16,7 @@ import (
 	"time"
 )
 
-func Init() {
+func AppInit() {
 	config := config.Load()
 	bootSplash(config)
 	routerv1 := router.New()
