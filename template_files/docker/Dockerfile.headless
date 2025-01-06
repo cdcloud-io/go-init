@@ -4,7 +4,8 @@ FROM golang:1.22-bookworm AS build-stage
 ### Set the CGO_ENABLED environment variable to 0 to disable c lib dependancies
 ARG CGO_ENABLED=0
 
-### Set the compilation to linux
+### Set the compilation to amd64/linux
+ARG GOARCH=amd64
 ARG GOOS=linux
 
 WORKDIR /build

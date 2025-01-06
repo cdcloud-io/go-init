@@ -105,11 +105,13 @@ run:
 # Build the application
 build: deps | $(BIN_DIR)
 	@echo "  >  Building binary..."
+	GOARCH=amd64 GOOS=linux
 	@go build -v -o $(BIN_DIR)/$(MODULE_NAME) cmd/$(MODULE_NAME)/*.go
 
 # Build the application for production delivery (strip symbols)
 build-prod: deps | $(BIN_DIR)
 	@echo "  >  Building Production binary..."
+	GOARCH=amd64 GOOS=linux
 	@go build -mod=vendor -ldflags="-s -w" -o $(BIN_DIR)/$(MODULE_NAME)/$(MODULE_NAME) ./cmd/$(MODULE_NAME) || (echo "Build failed with exit code $$?"; exit 1)
 
 # Build proto-buf code (untested)
@@ -136,11 +138,17 @@ clean:
 	@-rm -rf vendor
 	@-rm -f cover.out cover.html
 
-# Dependancy management
-deps:
-	@go get ./...
-	@go mod tidy
-	@go mod download
+# Clean the mod cache folder - If you really want to nuke everything
+clean-all:
+	@go clean -cache -modcache -i -r
+	@-rm -rf $(BIN_DIR)/$(MODULE_NAME)
+	@-rm -rf vendor
+	@-rm -f cover.out cover.html
+
+# Dependency management
+deps: clean
+	@go mod tidy      # Ensure go.mod is clean and up-to-date
+	@go mod download  # Download all modules
 
 # Generate assembly code (untested)
 asm:
