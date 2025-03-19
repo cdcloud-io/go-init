@@ -1,6 +1,6 @@
 # cdcloud.dev Makefile for GO.
 # author: cd-stephen
-# verision 1.0.5.beta
+VERSION := 1.0.5.beta
 
 # INFO
 # @         | only show the output of the command, not the command itself
@@ -11,7 +11,7 @@
 ## Module info
 BIN_DIR := bin
 MODULE_NAME := <project/module name>
-URL_PATH := "" # github repo url
+URL_PATH := <github.com/... url>
 
 ## Load variables from a .env file.
 -include .env
@@ -43,10 +43,11 @@ RESET := $(shell tput sgr0)
 help:
 	@printf "\n"
 	@printf "##########################################################\n"
-	@printf "#          📘  cdcloud.io GO build tool                  #\n"
+	@printf "#          📘 cdcloud.io GO build tool 📘               #\n"
+	@printf "#                 version: $(VERSION)                       #\n"
 	@printf "##########################################################\n"
 	@printf "\n"
-	@printf "\U0001F4C4 Makefile variables \U0001F4C4\n"
+	@printf "📄 Makefile Variables 📄 \n"
 	@printf -- "------------------------\n"
 	@printf "VERSION: %s\n" "$(VERSION)"
 	@printf "BUILD: %s\n" "$(BUILD)"
@@ -55,8 +56,8 @@ help:
 	@printf "URL_PATH: %s\n" "$(URL_PATH)"
 	@printf "GOBASE: %s\n" "$(GOBASE)"
 	@printf "\n"
-	@printf "🎯 Available targets\n"
-	@printf -- "------------------------\n"
+	@printf "🎯 Available Targets 🎯 \n"
+	@printf -- "-----------------------\n"
 	@printf "help              - Show this help information\n"
 	@printf "fmt               - Format the code using gofmt\n"
 	@printf "vet               - Run go vet to check for issues\n"
@@ -84,8 +85,8 @@ vars:
 	@printf "#          📘  cdcloud.io Makefile VAR info 📘           #\n"
 	@printf "##########################################################\n"
 	@printf "\n"
-	@printf "📄 Makefile variables\n"
-	@printf -- "------------------------\n"
+	@printf "📄 Makefile variables 📄 \n"
+	@printf -- "-----------------------\n"
 	@printf "VERSION: %s\n" "$(VERSION)"
 	@printf "BUILD: %s\n" "$(BUILD)"
 	@printf "BIN_DIR: %s\n" "$(BIN_DIR)"
