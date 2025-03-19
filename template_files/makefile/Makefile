@@ -1,4 +1,6 @@
 # cdcloud.dev Makefile for GO.
+# author: cd-stephen
+# verision 1.0.4.latest
 
 # INFO
 # @         | only show the output of the command, not the command itself
