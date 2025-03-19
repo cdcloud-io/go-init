@@ -1,6 +1,6 @@
 # cdcloud.dev Makefile for GO.
 # author: cd-stephen
-VERSION := 1.0.5.beta
+MAKE_FILE_VER := 1.0.5.beta
 
 # INFO
 # @         | only show the output of the command, not the command itself
@@ -43,8 +43,8 @@ RESET := $(shell tput sgr0)
 help:
 	@printf "\n"
 	@printf "##########################################################\n"
-	@printf "#          📘 cdcloud.io GO build tool 📘               #\n"
-	@printf "#                 version: $(VERSION)                       #\n"
+	@printf "#          📘 cdcloud.io GO build tool 📘                #\n"
+	@printf "#               version: $(MAKE_FILE_VER)                      #\n"
 	@printf "##########################################################\n"
 	@printf "\n"
 	@printf "📄 Makefile Variables 📄 \n"

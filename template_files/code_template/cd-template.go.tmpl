@@ -1,0 +1,114 @@
+/* 
+- comments and documentation should avoid going past 79 columns wide
+- every fuction and method should have a comment line above it as follows:
+  // {{function_name}} ({{section}}): {{ description optional but should not go past same line }} where section is 'public function/method' || 'private fuction/method'
+- every type definition should have a comment line above it as follows:
+  // {{type_name}} ({{section}}): {{ description optional but should not go past same line }} where section is 'type'
+- all 'hint:' lines are to instruct llms only and should be removed from final output
+- all additional comments should be as short as possible, and NOT start with capital letter or end in a period (.)
+
+----
+future code excluded from git commits:
+<filename>.future.md
+
+*/
+---
+package {{package_name}}
+
+// ---------------- {{package_name}}: {{current_file}}.go ----------------------
+// # Package Documentation
+// - Package Name: {{PACKAGE_NAME}}
+// - Description: {{package_describe}}
+//
+// ## Package File(s) 
+// - {{pkgfile1.go}}: {{pkgfile1.go_description}}
+// - {{pkgfile2.go]}: {{pkgfile2.go_description}}
+//
+// ### Current File
+// - {{pkgfile.go}}: (current_file)
+//
+// #### Global VARIABLE(s)/CONSTANT(s)
+// - {{var1}}: {{var1_describe}}
+// // omit this section unless there is a reason to bring up attention to detail.
+//
+// #### Data Structure(s)
+// - {{datastruct1}}: {{datastruct1_describe}}
+// - {{datastruct2}}: {{datastruct2_describe}}
+//
+// #### Constructor(s)
+// - {{constructor1}}: {{constructor1_describe}}
+//
+// #### Method(s)
+// - {{method1}}: {{method1_describe}}
+//
+// #### Function(s)
+// - {{function1}}: {{function1_describe}}
+//
+// **Developer Note(s)**
+// - {{developer_note1}}: {{developer_note1_describe}} //used to bring attention
+//   to callouts, caveats, gotchas or code that does not document itself.
+//   ie. magic numbers, between developers.
+//
+//   comment suffix //#ll#iu - #ll: linked from local packages
+//                           - #lo: linked from other packages
+//                           - #lm: linked from many packages (local and other)
+//                           - #nl: no link
+//                           - #iu: in-use
+//                           - #nu: not in-use
+//                           - #au: audited for style guidelines
+//
+// -----------------------------------------------------------------------------
+
+import (
+	"fmt"
+)
+
+// ================ GLOBAL(s) / CONSTANT(s) ====================================
+// hint: 1 blank line
+const {{const1}} {{const1_type}} = {{const1_value}}
+var {{var1}} {{var1_type}} = {{var1_value}} OR {{var1_func_call}}
+// hint: 1 blank line
+
+// ================ DATA STRUCTURE(s) / INTERFACE(s) ===========================
+// hint: 1 blank line
+type {{data_type_struct1}} struct {//include a mutex field with value of sync.Mutex}
+
+type {{data_type_struct1}} interface{}
+// hint: 1 blank line
+
+// ================ CONSTRUCTOR(s) =============================================
+// hint: 1 blank line
+func New{{Constructor1}}() {{Type}} {}
+// hint: 1 blank line
+
+// ================ PUBLIC METHOD(s) ===========================================
+// hint: 1 blank line
+// {{Public_method1}}:{{Public_method1_description}} //comment line
+func (s *Struct) {{Public_method1}}() {}
+// hint: 1 blank line
+// #### {{method_grouping_title}} // to group similar method together
+// hint: 1 blank line
+
+// ================ PRIVATE METHOD(s) ==========================================
+// hint: 1 blank line
+// {{private_method1}}:{{private_method1_description}} //comment line
+func (s *Struct) {{private_method1}}() {}
+// hint: 1 blank line
+// #### {{method_grouping_title}} // to group similar method together
+// hint: 1 blank line
+
+// ================ PUBLIC FUNCTION(s) =========================================
+// hint: 1 blank line
+// {{Public_function1}}:{{Public_function1_description}} //comment line
+func {{Public_function1}}() {}
+// hint: 1 blank line
+// #### {{function_grouping_title}} // to group similar functions together
+// hint: 1 blank line
+
+// ================ PRIVATE FUNCTION(s) ========================================
+// hint: 1 blank line
+// {{private_function1}}:{{private_function1_description}} //comment line
+func {{private_function1}}() {}
+// hint: 1 blank line
+// #### {{function_grouping_title}} // to group similar functions together
+// hint: 1 blank line

@@ -1,0 +1,11 @@
+go.sum
+*.json
+go.mod
+*.log
+.gitignore
+bin
+vendor
+hold
+img
+.git
+
