@@ -1,5 +1,8 @@
 package main
 
+// cdcloud-io proprietary main() entrypoint v2.0
+// validated 3/21/25
+
 import (
 	"context"
 	"fmt"
@@ -7,25 +10,38 @@ import (
 	"os"
 	"os/signal"
 	"time"
-
-	// "<module>/internal/app"
 )
 
 /*
-main, in GO currently does not return. Therefore, we don't have an application exit code.
-The run function is like the main function, except that it takes in
-operating system fundamentals as arguments and returns an error, like `int main()` in C.
+main.go version 2
+- Timeout handling: includes a 5-minute timeout context, preventing infinite hangs
+- Better context handling: It properly layers contexts (timeout wrapped with signal handling)
+- Better error messaging: It provides more detailed error context, especially for timeouts
+- More comprehensive comments: It includes detailed documentation about the OS fundamentals
 
----------------------------------------------------------------------------------------------------------
-    VALUE       |    TYPE                |    DESCRIPTION
----------------------------------------------------------------------------------------------------------
-   os.Args      | []string               |  The arguments passed when executing your program.
-   os.Stdin     | io.Reader              |  For reading input.
-   os.Stdout    | io.Writer              |  For writing output.
-   os.Stderr    | io.Writer              |  For writing error logs.
-   os.Getenv    | func(string) string    |  For reading environment variables.
-   os.Getwd     | func() (string, error) |  Get the working directory.
----------------------------------------------------------------------------------------------------------
+
+main() does not return an error code. Therefore, we do NOT
+have an application exit code directly in main.
+
+The run() function is like the main function but takes in
+operating system input(s) as arguments and returns an error,
+similar to `int main()` in C.
+
+--------------------------------------------------------------------------------
+    VALUE     |    TYPE                |    DESCRIPTION
+--------------------------------------------------------------------------------
+   os.Args	  | []string	             |  Arguments / flags passed on execution
+   os.Stdin	  | io.Reader	             |  For reading input
+   os.Stdout	| io.Writer	             |  For writing output
+   os.Stderr	| io.Writer	             |  For writing error logs
+   os.Getenv	| func(string)           |  For reading environment variables
+   os.Getwd	  | func() (string, error) |  Gets the working directory
+--------------------------------------------------------------------------------
+note(s)
+- signal.NotifyContext: listens for OS signals (e.g., SIGINT or SIGTERM) and
+  cancels the context upon receiving them with graceful shutdown
+
+--------------------------------------------------------------------------------
 */
 
 func run(ctx context.Context, w io.Writer, args []string) error {
@@ -59,3 +75,19 @@ func main() {
 		os.Exit(1)
 	}
 }
+
+/*
+// application entrypoint function
+
+package application
+
+func Run(ctx context.Context, w io.Writer, args []string) error {
+	// create a context that we can cancel on Ctrl+C
+	ctx, cancel := context.WithCancel(ctx)
+	defer cancel()
+
+  // code
+
+}
+
+*/
