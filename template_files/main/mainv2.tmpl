@@ -49,17 +49,19 @@ import (
 )
 
 func run(ctx context.Context, w io.Writer, args []string) error {
-	// Create a timeout context first.
+
+	// create a timeout context for hang on Run()
 	ctx, timeoutCancel := context.WithTimeout(ctx, 5*time.Minute)
 	defer timeoutCancel()
 
-	// Wrap it with signal handling (e.g., Ctrl+C).
+	// wrap it with signal handling (e.g., Ctrl+C)
 	ctx, signalCancel := signal.NotifyContext(ctx, os.Interrupt)
 	defer signalCancel()
 
-	// Run the application logic.
-	if err := app.RunCli(ctx, w, args); err != nil {
-		// Provide more context if it was a timeout.
+	// Run(): application entrypoint with context and args
+	if err := app.Run(ctx, w, args); err != nil {
+
+		// provide more context if it was a timeout
 		if ctx.Err() == context.DeadlineExceeded {
 			return fmt.Errorf("operation timed out after 5 minutes: %w", err)
 		}
@@ -70,10 +72,11 @@ func run(ctx context.Context, w io.Writer, args []string) error {
 }
 
 func main() {
-	// Root context, typically background for CLI apps.
+
+	// root context, typically background for CLI apps
 	ctx := context.Background()
 
-	// Run the main logic and handle any errors.
+	// run the main logic and handle any errors
 	if err := run(ctx, os.Stdout, os.Args); err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %s\n", err)
 		os.Exit(1)
