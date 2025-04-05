@@ -10,8 +10,8 @@ MAKE_FILE_VER := 1.0.5.beta
 
 ## Module info
 BIN_DIR := bin
-MODULE_NAME := <project/module name>
-URL_PATH := <github.com/... url>
+MODULE_NAME := gt-blackjack
+URL_PATH := github.com/level9turtles/gt-blackjack
 
 ## Load variables from a .env file.
 -include .env
@@ -191,3 +191,4 @@ tidy:
 asm:
 	@echo "$(YELLOW)Generating assembly code...$(RESET)" #CHANGE MADE HERE - FROM: silent TO: colorized status message
 	@go tool compile -S cmd/$(MODULE_NAME)/main.go > $(MODULE_NAME).asm
+	
