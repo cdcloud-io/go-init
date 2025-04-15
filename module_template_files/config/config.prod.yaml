@@ -1,0 +1,19 @@
+app:
+  name: __MODULE_NAME__
+  version: "0.1.0"
+  commit_sha: ${_APP_COMMIT_SHA}
+  build_id: ${_APP_BUILD_ID}
+  build_date: ${_APP_BUILD_DATE}
+  env: ${_APP_ENV}
+  debug: false
+
+settings:
+  string_setting1: "setting1"
+  bool_setting1: false
+  db_connection: "db://dbconnection_string"
+
+server:
+  host: 0.0.0.0
+  port: 8080
+  health_endpoint: /healthz
+  info_endpoint: /info

@@ -1,35 +1,21 @@
-/* 
-- comments and documentation should avoid going past 79 columns wide
-- every fuction and method should have a comment line above it as follows:
-  // {{function_name}} ({{section}}): {{ description optional but should not go past same line }} where section is 'public function/method' || 'private fuction/method'
-- every type definition should have a comment line above it as follows:
-  // {{type_name}} ({{section}}): {{ description optional but should not go past same line }} where section is 'type'
-- all 'hint:' lines are to instruct llms only and should be removed from final output
-- all additional comments should be as short as possible, and NOT start with capital letter or end in a period (.)
-
-----
-future code excluded from git commits:
-<filename>.future.md
-
-*/
----
 package {{package_name}}
 
-// ---------------- {{package_name}}: {{current_file}}.go ----------------------
+// ---------------- {{package_name}}: run.go -----------------------------------
 // # Package Documentation
 // - Package Name: {{PACKAGE_NAME}}
-// - Description: {{package_describe}}
+// - Description:  main program loop, called from main()
 //
 // ## Package File(s) 
 // - {{pkgfile1.go}}: {{pkgfile1.go_description}}
 // - {{pkgfile2.go]}: {{pkgfile2.go_description}}
 //
 // ### Current File
-// - {{pkgfile.go}}: (current_file)
+// - run.go: (current_file)
 //
 // #### Global VARIABLE(s)/CONSTANT(s)
+// omit this section unless there is a reason to bring up attention to detail
 // - {{var1}}: {{var1_describe}}
-// // omit this section unless there is a reason to bring up attention to detail.
+// - {{const1}}: {{const1_description}}
 //
 // #### Data Structure(s)
 // - {{datastruct1}}: {{datastruct1_describe}}
@@ -42,73 +28,100 @@ package {{package_name}}
 // - {{method1}}: {{method1_describe}}
 //
 // #### Function(s)
-// - {{function1}}: {{function1_describe}}
+// - Run(): called from main(), entrypoint and program loop
 //
 // **Developer Note(s)**
 // - {{developer_note1}}: {{developer_note1_describe}} //used to bring attention
 //   to callouts, caveats, gotchas or code that does not document itself.
 //   ie. magic numbers, between developers.
 //
-//   comment suffix //#ll#iu - #ll: linked from local packages
-//                           - #lo: linked from other packages
-//                           - #lm: linked from many packages (local and other)
-//                           - #nl: no link
-//                           - #iu: in-use
-//                           - #nu: not in-use
-//                           - #au: audited for style guidelines
-//
 // -----------------------------------------------------------------------------
 
 import (
+	"context"
 	"fmt"
+	"io"
+	"time"
 )
 
 // ================ GLOBAL(s) / CONSTANT(s) ====================================
-// hint: 1 blank line
+// {{blank_line}}
 const {{const1}} {{const1_type}} = {{const1_value}}
 var {{var1}} {{var1_type}} = {{var1_value}} OR {{var1_func_call}}
-// hint: 1 blank line
+// {{blank_line}}
 
 // ================ DATA STRUCTURE(s) / INTERFACE(s) ===========================
-// hint: 1 blank line
+// {{blank_line}}
 type {{data_type_struct1}} struct {//include a mutex field with value of sync.Mutex}
-
 type {{data_type_struct1}} interface{}
-// hint: 1 blank line
+// {{blank_line}}
 
 // ================ CONSTRUCTOR(s) =============================================
-// hint: 1 blank line
+// {{blank_line}}
 func New{{Constructor1}}() {{Type}} {}
-// hint: 1 blank line
+// {{blank_line}}
 
 // ================ PUBLIC METHOD(s) ===========================================
-// hint: 1 blank line
+// {{blank_line}}
 // {{Public_method1}}:{{Public_method1_description}} //comment line
 func (s *Struct) {{Public_method1}}() {}
-// hint: 1 blank line
+// {{blank_line}}
 // #### {{method_grouping_title}} // to group similar method together
-// hint: 1 blank line
+// {{blank_line}}
 
 // ================ PRIVATE METHOD(s) ==========================================
-// hint: 1 blank line
+// {{blank_line}}
 // {{private_method1}}:{{private_method1_description}} //comment line
 func (s *Struct) {{private_method1}}() {}
-// hint: 1 blank line
+{{blank_line}}
 // #### {{method_grouping_title}} // to group similar method together
-// hint: 1 blank line
-
+// {{blank_line}}
+//
 // ================ PUBLIC FUNCTION(s) =========================================
-// hint: 1 blank line
-// {{Public_function1}}:{{Public_function1_description}} //comment line
-func {{Public_function1}}() {}
-// hint: 1 blank line
-// #### {{function_grouping_title}} // to group similar functions together
-// hint: 1 blank line
+//
+// Run(): the main program loop entrypoint
+// listens for:
+// - periodic ticks
+// - context cancellation
+func Run(ctx context.Context, w io.Writer, args []string) error {
+	// optional: handle startup args
+	if len(args) > 1 {
+		fmt.Fprintf(w, "Arguments: %v\n", args[1:])
+	}
 
+	// setup app loop ticker
+	ticker := time.NewTicker(10 * time.Second)
+	defer ticker.Stop()
+
+	// initial startup banner or message
+	fmt.Fprintln(w, "{{server}} started. Press Ctrl+C to stop.")
+
+	for {
+		select {
+		case <-ctx.Done():
+			// program exit on timeout or SIGINT (Ctrl+C)
+			// triggered by parent context cancellation (timeout or Ctrl+C)
+			fmt.Fprintln(w, "\n⚙️ Context cancelled. Shutting down gracefully.")
+			return nil
+
+			// === ⚙️ MAIN PROGRAM LOOP ⚙️ ===
+			// repeating program logic
+		case t := <-ticker.C:
+			// program loop begin
+			// - poll file
+			// - check db
+			fmt.Fprintf(w, "⏰ Tick at %s\n", t.Format(time.RFC3339))
+		}
+	}
+
+  return nil
+}
+
+// 
 // ================ PRIVATE FUNCTION(s) ========================================
-// hint: 1 blank line
+//
 // {{private_function1}}:{{private_function1_description}} //comment line
 func {{private_function1}}() {}
-// hint: 1 blank line
+// {{blank_line}}
 // #### {{function_grouping_title}} // to group similar functions together
-// hint: 1 blank line
+// {{blank_line}}

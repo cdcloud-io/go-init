@@ -1,0 +1,92 @@
+package {{package_name}}
+
+// ---------------- {{package_name}}: {{current_file}}.go ----------------------
+// # Package Documentation
+// - Package Name: {{PACKAGE_NAME}}
+// - Description:  {{package_describe}}
+//
+// ## Package File(s) 
+// - {{pkgfile1.go}}: {{pkgfile1.go_description}}
+// - {{pkgfile2.go}}: {{pkgfile2.go_description}}
+//
+// ### Current File
+// - {{pkgfile.go}}: (current_file)
+//
+// #### Global VARIABLE(s)/CONSTANT(s)
+// omit this section unless there is a reason to bring up attention to detail
+// - {{var1}}: {{var1_describe}}
+// - {{const1}}: {{const1_description}}
+//
+// #### Data Structure(s)
+// - {{datastruct1}}: {{datastruct1_describe}}
+// - {{datastruct2}}: {{datastruct2_describe}}
+//
+// #### Constructor(s)
+// - {{constructor1}}: {{constructor1_describe}}
+//
+// #### Method(s)
+// - {{method1}}: {{method1_describe}}
+//
+// #### Function(s)
+// - {{function1}}: {{function1_describe}}
+//
+// **Developer Note(s)**
+// - {{developer_note1}}: {{developer_note1_describe}} //used to bring attention
+//   to callouts, caveats, gotchas or code that does not document itself.
+//   ie. magic numbers, between developers.
+//
+// -----------------------------------------------------------------------------
+
+import (
+	"fmt"
+)
+
+// {{blank_line}}
+// ================ GLOBAL(s) / CONSTANT(s) ====================================
+// {{blank_line}}
+const {{const1}} {{const1_type}} = {{const1_value}}
+var {{var1}} {{var1_type}} = {{var1_value}} OR {{var1_func_call}}
+
+// {{blank_line}}
+// ================ DATA STRUCTURE(s) / INTERFACE(s) ===========================
+// {{blank_line}}
+type {{data_type_struct1}} struct {//include mutex of type sync.Mutex}
+type {{data_type_struct1}} interface{}
+
+// {{blank_line}}
+// ================ CONSTRUCTOR(s) =============================================
+// {{blank_line}}
+func New{{Constructor1}}() {{Type}} {}
+
+// {{blank_line}}
+// ================ PUBLIC METHOD(s) ===========================================
+// {{blank_line}}
+// {{Public_method1}}:{{Public_method1_description}}
+func (s *Struct) {{Public_method1}}() {}
+// {{blank_line}}
+// #### {{method_grouping_title}} // to group similar method together
+
+// {{blank_line}}
+// ================ PRIVATE METHOD(s) ==========================================
+// {{blank_line}}
+// {{private_method1}}:{{private_method1_description}}
+func (s *Struct) {{private_method1}}() {}
+// {{blank_line}}
+// #### {{method_grouping_title}} // to group similar method together
+
+// {{blank_line}}
+// ================ PUBLIC FUNCTION(s) =========================================
+// {{blank_line}}
+// {{Public_function1}}:{{Public_function1_description}}
+func {{Public_function1}}() {}
+// {{blank_line}}
+// #### {{function_grouping_title}} // to group similar functions together
+
+// {{blank_line}}
+// ================ PRIVATE FUNCTION(s) ========================================
+// {{blank_line}}
+// {{private_function1}}:{{private_function1_description}}
+func {{private_function1}}() {}
+// {{blank_line}}
+// #### {{function_grouping_title}} // to group similar functions together
+// {{blank_line}}

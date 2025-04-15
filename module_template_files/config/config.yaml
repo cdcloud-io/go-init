@@ -5,7 +5,18 @@ app:
   build_id: ${_APP_BUILD_ID}
   build_date: ${_APP_BUILD_DATE}
   env: ${_APP_ENV}
-  debug: true
+  debug: false
+
+features:
+  enable_auth: false
+  enable_cache: false
+  feature_flag1: false
+
+database:
+  driver: "postgres"
+  dsn: "postgres://user:pass@localhost:5432/dbname"
+  max_connections: 10
+
 server:
   host: 0.0.0.0
   port: 8080

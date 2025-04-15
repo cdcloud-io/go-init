@@ -1,0 +1,127 @@
+package {{package_name}}
+
+// ---------------- {{package_name}}: run.go -----------------------------------
+// # Package Documentation
+// - Package Name: {{PACKAGE_NAME}}
+// - Description:  main program loop, called from main()
+//
+// ## Package File(s) 
+// - {{pkgfile1.go}}: {{pkgfile1.go_description}}
+// - {{pkgfile2.go]}: {{pkgfile2.go_description}}
+//
+// ### Current File
+// - run.go: (current_file)
+//
+// #### Global VARIABLE(s)/CONSTANT(s)
+// omit this section unless there is a reason to bring up attention to detail
+// - {{var1}}: {{var1_describe}}
+// - {{const1}}: {{const1_description}}
+//
+// #### Data Structure(s)
+// - {{datastruct1}}: {{datastruct1_describe}}
+// - {{datastruct2}}: {{datastruct2_describe}}
+//
+// #### Constructor(s)
+// - {{constructor1}}: {{constructor1_describe}}
+//
+// #### Method(s)
+// - {{method1}}: {{method1_describe}}
+//
+// #### Function(s)
+// - Run(): called from main(), entrypoint and program loop
+//
+// **Developer Note(s)**
+// - {{developer_note1}}: {{developer_note1_describe}} //used to bring attention
+//   to callouts, caveats, gotchas or code that does not document itself.
+//   ie. magic numbers, between developers.
+//
+// -----------------------------------------------------------------------------
+
+import (
+	"context"
+	"fmt"
+	"io"
+	"time"
+)
+
+// ================ GLOBAL(s) / CONSTANT(s) ====================================
+// {{blank_line}}
+const {{const1}} {{const1_type}} = {{const1_value}}
+var {{var1}} {{var1_type}} = {{var1_value}} OR {{var1_func_call}}
+// {{blank_line}}
+
+// ================ DATA STRUCTURE(s) / INTERFACE(s) ===========================
+// {{blank_line}}
+type {{data_type_struct1}} struct {//include a mutex field with value of sync.Mutex}
+type {{data_type_struct1}} interface{}
+// {{blank_line}}
+
+// ================ CONSTRUCTOR(s) =============================================
+// {{blank_line}}
+func New{{Constructor1}}() {{Type}} {}
+// {{blank_line}}
+
+// ================ PUBLIC METHOD(s) ===========================================
+// {{blank_line}}
+// {{Public_method1}}:{{Public_method1_description}} //comment line
+func (s *Struct) {{Public_method1}}() {}
+// {{blank_line}}
+// #### {{method_grouping_title}} // to group similar method together
+// {{blank_line}}
+
+// ================ PRIVATE METHOD(s) ==========================================
+// {{blank_line}}
+// {{private_method1}}:{{private_method1_description}} //comment line
+func (s *Struct) {{private_method1}}() {}
+{{blank_line}}
+// #### {{method_grouping_title}} // to group similar method together
+// {{blank_line}}
+//
+// ================ PUBLIC FUNCTION(s) =========================================
+//
+// Run(): the main program loop entrypoint
+// listens for:
+// - periodic ticks
+// - context cancellation
+func Run(ctx context.Context, w io.Writer, args []string) error {
+	// optional: handle startup args
+	if len(args) > 1 {
+		fmt.Fprintf(w, "Arguments: %v\n", args[1:])
+	}
+
+	// setup app loop ticker
+	ticker := time.NewTicker(10 * time.Second)
+	defer ticker.Stop()
+
+	// initial startup banner or message
+	fmt.Fprintln(w, "{{server}} started. Press Ctrl+C to stop.")
+
+	for {
+		select {
+		case <-ctx.Done():
+			// program exit on timeout or SIGINT (Ctrl+C)
+			// triggered by parent context cancellation (timeout or Ctrl+C)
+			fmt.Fprintln(w, "\n⚙️ Context cancelled. Shutting down gracefully.")
+			return nil
+
+			// === ⚙️ MAIN PROGRAM LOOP ⚙️ ===
+			// repeating program logic
+		case t := <-ticker.C:
+			// program loop begin
+			// - poll file
+			// - check db
+			fmt.Fprintf(w, "⏰ Tick at %s\n", t.Format(time.RFC3339))
+		}
+	}
+
+  return nil
+}
+
+// 
+// ================ PRIVATE FUNCTION(s) ========================================
+//
+// {{private_function1}}:{{private_function1_description}} //comment line
+func {{private_function1}}() {}
+// {{blank_line}}
+// #### {{function_grouping_title}} // to group similar functions together
+// {{blank_line}}
