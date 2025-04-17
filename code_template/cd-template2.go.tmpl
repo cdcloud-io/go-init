@@ -1,0 +1,60 @@
+package {{package_name}}
+
+// ---------------- {{package_name}}: {{current_file}}.go ----------------------
+// # Package Documentation
+// - Package Name: {{PACKAGE_NAME}}
+// - Description:  {{package_describe}}
+//
+// ## Package File(s) 
+//
+// ### Current File
+// - {{pkgfile.go}}: (current_file)
+//
+// #### Data Structure(s)
+//
+// #### Constructor(s)
+//
+// #### Method(s)
+//
+// #### Function(s)
+//
+// **Developer Note(s)**
+// -----------------------------------------------------------------------------
+
+import (
+	"fmt"
+)
+
+// ================ GLOBAL(s) / CONSTANT(s) ====================================
+
+{{const}}
+{{var}}
+
+// ================ DATA STRUCTURE(s) / INTERFACE(s) ===========================
+
+type {{data_type_struct1}}
+
+// ================ CONSTRUCTOR(s) =============================================
+
+func New{{Constructor1}}() {{Type}} {}
+
+
+// ================ PUBLIC METHOD(s) ===========================================
+
+// {{Public_method_comment}}:{{description}}
+func (s *Struct) {{Public_method1}}() {}
+
+// ================ PRIVATE METHOD(s) ==========================================
+
+// {{private_method1_comment}}:{{description}}
+func (s *Struct) {{private_method1}}() {}
+
+// ================ PUBLIC FUNCTION(s) =========================================
+
+// {{Public_function1_comment}}:{{description}}
+func {{Public_function1}}() {}
+
+// ================ PRIVATE FUNCTION(s) ========================================
+
+// {{private_function1_comment}}:{{description}}
+func {{private_function1}}() {}

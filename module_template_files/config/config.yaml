@@ -5,20 +5,20 @@ app:
   build_id: ${_APP_BUILD_ID}
   build_date: ${_APP_BUILD_DATE}
   env: ${_APP_ENV}
+  jwt_secret: ${_APP_JWT_SECRET}
   debug: false
 
-features:
-  enable_auth: false
-  enable_cache: false
-  feature_flag1: false
-
-database:
-  driver: "postgres"
-  dsn: "postgres://user:pass@localhost:5432/dbname"
-  max_connections: 10
+settings:
+  string_setting1: "setting1"
+  bool_setting1: false
+  db_connection: "db://dbconnection_string"
 
 server:
-  host: 0.0.0.0
-  port: 8080
-  health_endpoint: /healthz
-  info_endpoint: /info
+  address: "0.0.0.0"
+  port: "8080"
+  health_endpoint: "/healthz"
+  info_endpoint: "/info"
+
+features:
+  enable_auth: true
+  enable_cache: false
