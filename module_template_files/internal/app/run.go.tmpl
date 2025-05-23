@@ -39,8 +39,12 @@ package {{package_name}}
 
 import (
 	"context"
+	"errors"
+	"flag"
 	"fmt"
 	"io"
+	"os"
+	"os/signal"
 	"time"
 )
 
