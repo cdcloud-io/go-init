@@ -1,8 +1,19 @@
 @AI: no emojis in comments and omit sections that are not relevant to the code.
 
-@AI: all code blocks, functions, Loops, Case / Switch statements, variables structs need to have detailed multi-line comment blocks that explain all the code, why's and how's if needed to make a non-technical person or project manager understand what the code block is responsible for.
+@AI: all code blocks, functions, Loops, Case / Switch statements, variables structs need to have detailed multi-line comment blocks that explain all the code, why's, how's if needed to make a non-technical person or project manager understand what the code block is responsible for.
+
+@AI: this is how i want you to comment 
+// comment
+{code}
+
+@AI: DO NOT COMMENT LIKE THIS
+{code} // comment
 
 @AI: focus on input instructions wrapped in {{}}
+
+@AI: make sure all struct, interface, function and mehod definitions start with the name followed by {} for structs and interfaces. and () for method and functions. examples:
+struc_name{}: definition
+func_name(): definition
 
 @AI: Log output need to be prefixed as follows
 🟥 [ERROR ]: {{log - critical program issues}}
@@ -47,7 +58,7 @@ package {{package_name}}
 // -----------------------------------------------------------------------------
 
 import (
-    "fmt"
+	"fmt"
 )
 
 // ================ GLOBAL(s) / CONSTANT(s) ====================================
