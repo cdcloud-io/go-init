@@ -15,6 +15,10 @@
 struc_name{}: definition
 func_name(): definition
 
+@AI: make sure all sections that are used are populated with the \
+// ================ {{SECTION NAME}} ==========================================
+
+
 @AI: Log output need to be prefixed as follows
 🟥 [ERROR ]: {{log - critical program issues}}
 🟨 [WARN  ]: {{log - program issues}}
@@ -57,46 +61,55 @@ package {{package_name}}
 // - {{call-outs}}: {{call-out explanation}}
 // -----------------------------------------------------------------------------
 
+@AI: all imports go here
 import (
 	"fmt"
 )
 
 // ================ GLOBAL(s) / CONSTANT(s) ====================================
+
+@AI: all variables, constants and enums go into this section
 // {{add comments}}
 {{const}}
 {{var}}
 
 // ================ DATA STRUCTURE(s) / INTERFACE(s) ===========================
 
+@AI: all struct and interface definitions go into this section
 // {{add detailed multi-lined comments explaining each data structure, interface, what it does, so that a non-technical person can read and understand what the code is intended to do}}
 type {{data_type_struct1}}
 
 // ================ CONSTRUCTOR(s) =============================================
 
+@AI: all contructors that build and return intial structs go into this section
 // {{add detailed multi-lined comments explaining each contructor, data structure its building, return, what it does, so that a non-technical person can read and understand what the code is intended to do}}
 func New{{Constructor1}}() {{Type}} {}
 
 
 // ================ PUBLIC METHOD(s) ===========================================
 
+@AI: all public methods, method names that start with a Uppercase letter go into this section
 // {{add detailed multi-lined comments explaining each public method, return, what it does, so that a non-technical person can read and understand what the code is intended to do}}
 // {{Public_method_name()}}:{{description}}
 func (s *Struct) {{Public_method1}}() {}
 
 // ================ PRIVATE METHOD(s) ==========================================
 
+@AI: all private methods including main() and init(), method names that start with a lowercase letter go into this section
 // {{add detailed multi-lined comments explaining each private method, return, what it does, so that a non-technical person can read and understand what the code is intended to do}}
 // {{private_method1_name()}}:{{description}}
 func (s *Struct) {{private_method1}}() {}
 
 // ================ PUBLIC FUNCTION(s) =========================================
 
+@AI: all public functions, function names that start with a Uppercase letter go into this section
 // {{add detailed multi-lined comments explaining each public function, return, what it does, so that a non-technical person can read and understand what the code is intended to do}}
 // {{Public_function1_name()}}:{{description}}
 func {{Public_function1}}() {}
 
 // ================ PRIVATE FUNCTION(s) ========================================
 
+@AI: all private functions, function names that start with a lowercase letter go into this section
 // {{add detailed multi-lined comments explaining each private function, return, what it does, so that a non-technical person can read and understand what the code is intended to do}}
 // {{private_function1_name()}}:{{description}}
 func {{private_function1}}() {}
