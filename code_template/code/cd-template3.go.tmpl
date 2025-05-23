@@ -1,5 +1,7 @@
 @AI: no emojis in comments and omit sections that are not relevant to the code.
+
 @AI: all code blocks, functions, Loops, Case / Switch statements, variables structs need to have detailed multi-line comment blocks that explain all the code, why's and how's if needed to make a non-technical person or project manager understand what the code block is responsible for.
+
 @AI: focus on input instructions wrapped in {{}}
 
 @AI: Log output need to be prefixed as follows
@@ -45,7 +47,7 @@ package {{package_name}}
 // -----------------------------------------------------------------------------
 
 import (
-	"fmt"
+    "fmt"
 )
 
 // ================ GLOBAL(s) / CONSTANT(s) ====================================
@@ -55,35 +57,35 @@ import (
 
 // ================ DATA STRUCTURE(s) / INTERFACE(s) ===========================
 
-// {{add detailed multi-lined comments explaining all the data structures and interfaces so that a non-technical person can read and understand what the code performs}}
+// {{add detailed multi-lined comments explaining each data structure, interface, what it does, so that a non-technical person can read and understand what the code is intended to do}}
 type {{data_type_struct1}}
 
 // ================ CONSTRUCTOR(s) =============================================
 
-// {{add detailed multi-lined comments explaining all the contructors so that a non-technical person can read and understand what the code performs}}
+// {{add detailed multi-lined comments explaining each contructor, data structure its building, return, what it does, so that a non-technical person can read and understand what the code is intended to do}}
 func New{{Constructor1}}() {{Type}} {}
 
 
 // ================ PUBLIC METHOD(s) ===========================================
 
-// {{add detailed multi-lined comments explaining each public method so that a non-technical person can read and understand what the code performs}}
-// {{Public_method_comment}}:{{description}}
+// {{add detailed multi-lined comments explaining each public method, return, what it does, so that a non-technical person can read and understand what the code is intended to do}}
+// {{Public_method_name()}}:{{description}}
 func (s *Struct) {{Public_method1}}() {}
 
 // ================ PRIVATE METHOD(s) ==========================================
 
-// {{add detailed multi-lined comments explaining each private method so that a non-technical person can read and understand what the code performs}}
-// {{private_method1_comment}}:{{description}}
+// {{add detailed multi-lined comments explaining each private method, return, what it does, so that a non-technical person can read and understand what the code is intended to do}}
+// {{private_method1_name()}}:{{description}}
 func (s *Struct) {{private_method1}}() {}
 
 // ================ PUBLIC FUNCTION(s) =========================================
 
-// {{add detailed multi-lined comments explaining each public function so that a non-technical person can read and understand what the code performs}}
-// {{Public_function1_comment}}:{{description}}
+// {{add detailed multi-lined comments explaining each public function, return, what it does, so that a non-technical person can read and understand what the code is intended to do}}
+// {{Public_function1_name()}}:{{description}}
 func {{Public_function1}}() {}
 
 // ================ PRIVATE FUNCTION(s) ========================================
 
-// {{add detailed multi-lined comments explaining each private function so that a non-technical person can read and understand what the code performs}}
-// {{private_function1_comment}}:{{description}}
+// {{add detailed multi-lined comments explaining each private function, return, what it does, so that a non-technical person can read and understand what the code is intended to do}}
+// {{private_function1_name()}}:{{description}}
 func {{private_function1}}() {}
