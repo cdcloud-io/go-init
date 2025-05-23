@@ -1,0 +1,89 @@
+@AI: no emojis in comments and omit sections that are not relevant to the code.
+@AI: all code blocks, functions, Loops, Case / Switch statements, variables structs need to have detailed multi-line comment blocks that explain all the code, why's and how's if needed to make a non-technical person or project manager understand what the code block is responsible for.
+@AI: focus on input instructions wrapped in {{}}
+
+@AI: Log output need to be prefixed as follows
+🟥 [ERROR ]: {{log - critical program issues}}
+🟨 [WARN  ]: {{log - program issues}}
+🟧 [DEBUG ]: {{log - invalid user input, suspicious activity, elevated access}}
+🟪 [USER  ]: {{log - invalid user input, suspicious activity, elevated access}}
+🟩 [INFO  ]: {{log - normal program output, program start, program calls}}
+🟦 [CONN  ]: {{log - remote connections established, ip info, geo info}}
+🟫 [DCONN ]: {{log - remote connection disconnected, disconnected ip info or geo info}} 
+
+@AI: Developer Notes are as needed and are not required. if no caveats, notices, or callouts, mark (none)
+@AI: template starts here:
+package {{package_name}}
+
+// ---------------- {{package_name}}: {{current_file}}.go ----------------------
+// # Package Documentation
+// - Package Name: {{PACKAGE_NAME}}
+// - Description:  {{package_describe}}
+//
+// ## Package File(s)
+// - {{pkgfile.go}}: {{brief description / one line}}
+//
+// ### Current File
+// - {{pkgfile.go}}: (current_file)
+//
+// #### Data Structure(s)
+// - {{data structure}}: {{data-structure explanation, one line}}
+//
+// #### Constructor(s)
+// - {{contructor}}: {{constructor explanation, one line}}
+//
+// #### Method(s)
+// - {{method}}: {{method explanation, one line}}
+//
+// #### Function(s)
+// - {{function}}: {{function explanation, one line}}
+//
+// **Developer Note(s)**
+// - {{caveat}}: {{caveat explanation}}
+// - {{notice}}: {{notice explanation}}
+// - {{call-outs}}: {{call-out explanation}}
+// -----------------------------------------------------------------------------
+
+import (
+	"fmt"
+)
+
+// ================ GLOBAL(s) / CONSTANT(s) ====================================
+// {{add comments}}
+{{const}}
+{{var}}
+
+// ================ DATA STRUCTURE(s) / INTERFACE(s) ===========================
+
+// {{add detailed multi-lined comments explaining all the data structures and interfaces so that a non-technical person can read and understand what the code performs}}
+type {{data_type_struct1}}
+
+// ================ CONSTRUCTOR(s) =============================================
+
+// {{add detailed multi-lined comments explaining all the contructors so that a non-technical person can read and understand what the code performs}}
+func New{{Constructor1}}() {{Type}} {}
+
+
+// ================ PUBLIC METHOD(s) ===========================================
+
+// {{add detailed multi-lined comments explaining each public method so that a non-technical person can read and understand what the code performs}}
+// {{Public_method_comment}}:{{description}}
+func (s *Struct) {{Public_method1}}() {}
+
+// ================ PRIVATE METHOD(s) ==========================================
+
+// {{add detailed multi-lined comments explaining each private method so that a non-technical person can read and understand what the code performs}}
+// {{private_method1_comment}}:{{description}}
+func (s *Struct) {{private_method1}}() {}
+
+// ================ PUBLIC FUNCTION(s) =========================================
+
+// {{add detailed multi-lined comments explaining each public function so that a non-technical person can read and understand what the code performs}}
+// {{Public_function1_comment}}:{{description}}
+func {{Public_function1}}() {}
+
+// ================ PRIVATE FUNCTION(s) ========================================
+
+// {{add detailed multi-lined comments explaining each private function so that a non-technical person can read and understand what the code performs}}
+// {{private_function1_comment}}:{{description}}
+func {{private_function1}}() {}
